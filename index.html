@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <title>Registro de Palabras</title>
+
+    <style type=""text/css">
+        
+        #contenido {
+            background-color: rgb(255, 0, 0);
+            color:rgb(0, 0, 0);
+            font-size: 100px;
+            margin: 0 auto;
+            min-height: 70vh;
+            padding: 1em;
+            text-align: center;
+            width: 80%;        
+
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: normal;
+
+            text-shadow: 4px 4px 4px #aaa;
+
+            /*<uniquifier>: Use a unique and descriptive class name*/
+            /* <weight>: Use a value from 100 to 900*/
+            /*.montserrat-<uniquifier> {  
+            }*/
+            
+
+        }
+
+    </style>
+
+</head>
+
+<body> 
+    <div id="contenido">
+    </div>    
+
+    <script type="text/javascript">
+        let recognition = new webkitSpeechRecognition();
+        let caja = document.getElementById("contenido");         
+        recognition.lang = 'es_ES';
+        recognition.continuous = true;
+        recognition.onresult = event =>{
+            let texto = "";
+            for (let result of event.results) {
+                texto += result[0].transcript + "<br>";
+            }
+            caja.innerHTML = texto;
+        }    
+        recognition.start();    
+    </script>
+
+</body>
+
+</html>
+
+
+
